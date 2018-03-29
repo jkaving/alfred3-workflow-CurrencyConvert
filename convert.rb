@@ -47,12 +47,12 @@ else
     result = JSON.parse(Net::HTTP.get(uri))
     result['rates'].each do |key, value|
         temp = Hash[
-            "title" => "#{base} : #{key} = 1 : #{value.round(4)} ",
+            "title" => "#{key} : #{base} = 1 : #{(1/value).round(4)} ",
             "subtitle" => "Last Update: #{result["date"]}",
             "icon" => Hash[
                 "path" => "flags/#{key}.png"
             ],
-            "arg" => "#{value.round(4)}"
+            "arg" => "#{(1/value).round(4)}"
         ]
         output["items"].push(temp)
     end
